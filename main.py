@@ -16,9 +16,11 @@ def main():
     if random.randint(0, 1) == 0:
         turn = "PLAYER"
         player_sym = "X"
+        comp_symbol = "O"
     else:
         turn = "COMPUTER"
-        comp_symbol = "O"
+        player_sym = "O"
+        comp_symbol = "X"
 
     # Main Loop
     while check_winner(board) == False:
@@ -34,8 +36,8 @@ def main():
                 # Check if player's move is valid
                 if ((player_x <= 2 and player_x >= 0) and
                     (player_y <= 2 and player_y >= 0)):
-                    if board[player_x][player_y] == " ":
-                        board[player_x][player_y] = player_sym
+                    if board[player_y][player_x] == " ":
+                        board[player_y][player_x] = player_sym
                         turn = "COMPUTER"
                         break
 
@@ -43,7 +45,9 @@ def main():
             pass
             #TODO: Artificial Intellignece
 
-    if check_winner(board) == "X":
+    print_board(board)
+    # Print the winner
+    if check_winner(board) == player_sym:
         print("YOU WON!!! :-)")  # YEHEY!!!
     else:
         print("You Lost :-(")  # :-P
