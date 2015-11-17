@@ -25,7 +25,7 @@ def main():
         comp_symbol = "X"
 
     # Main Loop
-    while check_winner(board) == False:
+    while check_winner(board) == False and board_filled(board) == False:
         print_board(board)
         print("{}'s turn".format(turn))
 
@@ -72,8 +72,10 @@ def main():
     # Print the winner
     if check_winner(board) == player_sym:
         print("YOU WON!!! :-)")  # YEHEY!!!
+    elif check_winner(board) == comp_symbol:
+        print("You Lost :-(")    # :-P
     else:
-        print("You Lost :-(")  # :-P
+        print("It's a DRAW!!!")  # -_-
 
 
 def print_board(board):
@@ -118,6 +120,16 @@ def check_winner(board):
     else:
         return False
 
+def board_filled(board):
+    """Checks if the board is already filled"""
+
+    # Check if there is an empty box in board
+    for row in range(3):
+        for col in range(3):
+            if board[row][col] == " ":
+                return False
+
+    return True
 
 def find_danger_score(board):
     """Returns the coord of the danger/score spot else False if none found"""
