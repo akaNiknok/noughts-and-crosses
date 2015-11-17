@@ -3,6 +3,8 @@ Popularly known as Tic-Tac-Toe
 """
 
 import random
+import os
+import time
 
 
 def main():
@@ -62,6 +64,10 @@ def main():
                         turn = "PLAYER"
                         break
 
+            # Makes the computer look like it is thinking like a human being :)
+            print("Wait... I'm thinking... -_-")
+            time.sleep(random.randint(2,5))
+
     print_board(board)
     # Print the winner
     if check_winner(board) == player_sym:
@@ -73,7 +79,7 @@ def main():
 def print_board(board):
     """Prints the board"""
     
-    print
+    os.system("clear")
     print("  0   1   2 X")
     for i in range(3):
         print(("{} {} | {} | {}").format(i, *board[i]))
