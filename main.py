@@ -41,9 +41,26 @@ def main():
                         turn = "COMPUTER"
                         break
 
+        # Get computer's move
         else:
-            pass
-            #TODO: Artificial Intellignece
+            danger = find_danger_score(board)  # Check if player is about to score
+
+            # If player is about to score, block him
+            if danger != False:
+                board[danger[0]][danger[1]] = comp_symbol
+                turn = "PLAYER"
+
+            # Else put it anywhere ;-)
+            else:
+                while True:
+                    comp_x = random.randint(0, 2)
+                    comp_y = random.randint(0, 2)
+
+                    # Check if move is valid
+                    if board[comp_y][comp_x] == " ":
+                        board[comp_y][comp_x] = comp_symbol
+                        turn = "PLAYER"
+                        break
 
     print_board(board)
     # Print the winner
@@ -94,9 +111,52 @@ def check_winner(board):
         return False
 
 
-def find_danger(board):
-    """Returns the coord of the danger spot else False if nothing found"""
-    pass
+def find_danger_score(board):
+    """Returns the coord of the danger/score spot else False if none found"""
+    
+    # Find danger/score spot in Horizontals
+    for row in range(3):
+        if ((board[row].count("X") == 2 and board[row].count(" ") == 1) or
+            (board[row].count("O") == 2 and board[row].count(" ") == 1)):
+            return row, board[row].index(" ")
+
+    # Find danger/score spot in Columns
+    for col in range(3):
+        if ((zip(*board)[col].count("X") == 2 and
+            zip(*board)[col].count(" ") == 1) or
+            (zip(*board)[col].count("O") == 2 and
+             zip(*board)[col].count(" ") == 1)):
+            return zip(*board)[col].index(" "), col
+
+    # Initialize list for diagonals `\` & `/`
+    diagonals = [
+        [board[0][0], board[1][1], board[2][2]],  # `\`
+        [board[2][0], board[1][1], board[0][2]]   # `/`
+    ]
+
+    # Find danger/score spot in Diagonals
+    for diagonal in range(2):
+        if ((diagonals[diagonal].count("X") == 2 and
+            diagonals[diagonal].count(" ") == 1) or
+            (diagonals[diagonal].count("O" == 2) and
+            diagonals[diagonal].count(" ") == 1)):
+
+            # Get the index of blank spot
+            index = diagonals[diagonal].index(" ")
+
+            # If the index of the blank spot is in the `\`, just return the
+            # same index since its x and y coordinates are ALWAYS the same
+            if diagonal == 0:
+                return index, index
+            else:
+                if index == 0:
+                    return 2, 0
+                elif index == 1:
+                    return 1, 1
+                else:
+                    return 0, 2
+
+    return False
 
 
 main()
