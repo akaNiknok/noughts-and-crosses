@@ -74,11 +74,13 @@ def print_board(board):
     """Prints the board"""
     
     print
-    print("  0   1   2")
+    print("  0   1   2 X")
     for i in range(3):
         print("{} {} | {} | {}").format(i, *board[i])
         if i != 2:
             print(" ---+---+---")
+
+    print("Y")
     print("============")
 
 
