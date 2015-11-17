@@ -12,25 +12,36 @@ def main():
     for x in range(3):
         board.append([" "] * 3)
 
+    # Decide who will be the first to play
+    if random.randint(0, 1) == 0:
+        turn = "PLAYER"
+        player_sym = "X"
+    else:
+        turn = "COMPUTER"
+        comp_symbol = "O"
+
+    # Main Loop
     while check_winner(board) == False:
         print_board(board)
+        print("{}'s turn".format(turn))
 
         # Get player's move
-        while True:
-            print("PLAYER's turn")
-            player_x = int(input("X = "))
-            player_y = int(input("Y = "))
+        if turn == "PLAYER":
+            while True:
+                player_x = int(input("X = "))
+                player_y = int(input("Y = "))
 
-            # Check if player's move is valid
-            if ((player_x <= 2 and player_x >= 0) and
-                (player_y <= 2 and player_y >= 0)):
-                if board[player_x][player_y] == " ":
-                    board[player_x][player_y] = "X"
-                    break
+                # Check if player's move is valid
+                if ((player_x <= 2 and player_x >= 0) and
+                    (player_y <= 2 and player_y >= 0)):
+                    if board[player_x][player_y] == " ":
+                        board[player_x][player_y] = player_sym
+                        turn = "COMPUTER"
+                        break
 
-        print_board(board)
-
-        #TODO: Artificial Intellignece
+        else:
+            pass
+            #TODO: Artificial Intellignece
 
     if check_winner(board) == "X":
         print("YOU WON!!! :-)")  # YEHEY!!!
