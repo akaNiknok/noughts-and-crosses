@@ -34,12 +34,12 @@ def main():
             while True:
                 try:
                     player_x = int(input("X = "))
-                except NameError:
+                except (NameError, ValueError):
                     print("Please enter a number")
                     continue
                 try:
                     player_y = int(input("Y = "))
-                except NameError:
+                except (NameError, ValueError):
                     print("Please enter a number")
                     continue
 
