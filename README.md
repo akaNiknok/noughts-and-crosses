@@ -11,6 +11,7 @@
 
 ## Features
 
+- [x] Supports Python 2 and 3
 - [x] Play with a computer (Artificial Intelligence)
   - [ ] Computer focuses on winning instead of blocking
 - [x] Clears the screen
