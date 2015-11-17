@@ -76,7 +76,7 @@ def print_board(board):
     print
     print("  0   1   2 X")
     for i in range(3):
-        print("{} {} | {} | {}").format(i, *board[i])
+        print(("{} {} | {} | {}").format(i, *board[i]))
         if i != 2:
             print(" ---+---+---")
 
@@ -124,11 +124,11 @@ def find_danger_score(board):
 
     # Find danger/score spot in Columns
     for col in range(3):
-        if ((zip(*board)[col].count("X") == 2 and
-            zip(*board)[col].count(" ") == 1) or
-            (zip(*board)[col].count("O") == 2 and
-             zip(*board)[col].count(" ") == 1)):
-            return zip(*board)[col].index(" "), col
+        if ((list(zip(*board))[col].count("X") == 2 and
+            list(zip(*board))[col].count(" ") == 1) or
+            (list(zip(*board))[col].count("O") == 2 and
+             list(zip(*board))[col].count(" ") == 1)):
+            return list(zip(*board))[col].index(" "), col
 
     # Initialize list for diagonals `\` & `/`
     diagonals = [
