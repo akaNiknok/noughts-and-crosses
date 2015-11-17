@@ -73,11 +73,11 @@ def check_winner(board):
         return board[2][0]
 
     # Check Verticals
-    elif board[0][0] == board[1][0] == board[1][0] != " ":
+    elif board[0][0] == board[1][0] == board[2][0] != " ":
         return board[0][0]
-    elif board[0][1] == board[1][1] == board[1][1] != " ":
+    elif board[0][1] == board[1][1] == board[2][1] != " ":
         return board[0][1]
-    elif board[0][2] == board[1][2] == board[1][2] != " ":
+    elif board[0][2] == board[1][2] == board[2][2] != " ":
         return board[0][2]
 
     # Check Diagonals
