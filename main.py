@@ -158,7 +158,7 @@ def find_danger_score(board):
     for diagonal in range(2):
         if ((diagonals[diagonal].count("X") == 2 and
             diagonals[diagonal].count(" ") == 1) or
-            (diagonals[diagonal].count("O" == 2) and
+            (diagonals[diagonal].count("O") == 2 and
             diagonals[diagonal].count(" ") == 1)):
 
             # Get the index of blank spot
