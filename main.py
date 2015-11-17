@@ -32,8 +32,16 @@ def main():
         # Get player's move
         if turn == "PLAYER":
             while True:
-                player_x = int(input("X = "))
-                player_y = int(input("Y = "))
+                try:
+                    player_x = int(input("X = "))
+                except NameError:
+                    print("Please enter a number")
+                    continue
+                try:
+                    player_y = int(input("Y = "))
+                except NameError:
+                    print("Please enter a number")
+                    continue
 
                 # Check if player's move is valid
                 if ((player_x <= 2 and player_x >= 0) and
@@ -42,6 +50,10 @@ def main():
                         board[player_y][player_x] = player_sym
                         turn = "COMPUTER"
                         break
+                    else:
+                        print("The coordinates you entered is not valid")
+                else:
+                    print("Please enter a number from 0-2")
 
         # Get computer's move
         else:
